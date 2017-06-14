@@ -1,0 +1,7 @@
+---
+# file: all.yml
+- hosts: all
+  roles:
+    - { role: jdbcrunner, when: "ansible_os_family == 'RedHat' and exec_common_role" }
+  environment:
+    "{{ proxy_env }}"

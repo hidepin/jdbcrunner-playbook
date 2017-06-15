@@ -10,15 +10,16 @@
 // var jdbcUrl = "jdbc:oracle:thin:@//localhost:1521/TPCC";
 
 // MySQL
-var jdbcUrl = "jdbc:mysql://localhost:3306/tpcc";
+// var jdbcUrl = "jdbc:mysql://localhost:3306/tpcc";
 
 // PostgreSQL
 // var jdbcUrl = "jdbc:postgresql://localhost:5432/tpcc";
+ var jdbcUrl = "jdbc:postgresql://{{ item.dbserver }}:5432/tpcc";
 
 var jdbcUser = "tpcc";
 var jdbcPass = "tpcc";
-var warmupTime = 300;
-var measurementTime = 900;
+var warmupTime = {{ item.warmupTime }};
+var measurementTime = {{ item.measurementTime }};
 var nTxTypes = 5;
 var nAgents = 16;
 var stmtCacheSize = 40;

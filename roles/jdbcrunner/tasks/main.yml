@@ -16,10 +16,31 @@
   git:
     repo: https://github.com/sh2/jdbcrunner.git
     dest: "{{ item.jdbcrunner_dir}}"
+    update: no
   become: true
   become_user: "{{ item.user }}"
   register: result
   until: result | success
   retries: 3
   delay: 5
+  with_items: "{{ jdbcrunner_conf }}"
+
+- name: tpcc load
+  template:
+    src: tpcc_load.js.j2
+    dest: "{{ item.jdbcrunner_dir}}/scripts/tpcc_load.js"
+    owner: "{{ item.user }}"
+    group: "{{ item.user }}"
+    mode: 0644
+  register: is_tpcc_load_setting
+  with_items: "{{ jdbcrunner_conf }}"
+
+- name: tpcc
+  template:
+    src: tpcc.js.j2
+    dest: "{{ item.jdbcrunner_dir}}/scripts/tpcc.js"
+    owner: "{{ item.user }}"
+    group: "{{ item.user }}"
+    mode: 0644
+  register: is_tpcc_setting
   with_items: "{{ jdbcrunner_conf }}"

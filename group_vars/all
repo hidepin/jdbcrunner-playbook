@@ -5,4 +5,4 @@ rhel_subscription:
   username: 'username'
   password: 'password'
 jdbcrunner_conf:
-  - { user: 'hidepin', jdbcrunner_dir: "/home/hidepin/jdbcrunner" }
+  - { user: 'hidepin', jdbcrunner_dir: "/home/hidepin/jdbcrunner", dbserver: "localhost", warmupTime: 300, measurementTime: 900 }

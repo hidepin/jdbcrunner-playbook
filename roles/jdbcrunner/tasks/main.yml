@@ -1,2 +1,25 @@
 ---
 # tasks file for jdbcrunner
+- name: openjdk packages install
+  package:
+    name: "{{ item }}"
+    state: present
+    enablerepo: "{{ (ansible_distribution == 'RedHat') | ternary('rhel-7-server-debug-rpms','base-debuginfo') }}"
+  with_items:
+    "{{ openjdk_pkg }}"
+  register: result
+  until: result | success
+  retries: 3
+  delay: 5
+
+- name: git clone jdbcrunner
+  git:
+    repo: https://github.com/sh2/jdbcrunner.git
+    dest: "{{ item.jdbcrunner_dir}}"
+  become: true
+  become_user: "{{ item.user }}"
+  register: result
+  until: result | success
+  retries: 3
+  delay: 5
+  with_items: "{{ jdbcrunner_conf }}"

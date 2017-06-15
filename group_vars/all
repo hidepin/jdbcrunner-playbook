@@ -4,3 +4,5 @@
 rhel_subscription:
   username: 'username'
   password: 'password'
+jdbcrunner_conf:
+  - { user: 'hidepin', jdbcrunner_dir: "/home/hidepin/jdbcrunner" }

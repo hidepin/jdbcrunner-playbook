@@ -1,2 +1,13 @@
 ---
 # defaults file for jdbcrunner
+proxy_env:
+  no_proxy: '*'
+#  http_proxy: http://172.16.111.1:8080
+#  https_proxy: http://172.16.111.1:8080
+openjdk_version: "1.8.0"
+openjdk_pkg:
+  - "java-{{ openjdk_version }}-openjdk"
+  - "java-{{ openjdk_version }}-openjdk-devel"
+  - "java-{{ openjdk_version }}-openjdk-headless"
+  - "java-{{ openjdk_version }}-openjdk-debuginfo"
+  - tzdata-java
